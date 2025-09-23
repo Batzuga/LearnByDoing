@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Goal"))
         {
             GameManager.instance.MissionComplete();
+            anim.SetBool("Moving", false);
             this.enabled = false;
         }
     }
