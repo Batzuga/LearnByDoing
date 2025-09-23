@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        //we get all the necessary components at the start of the game
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
@@ -19,7 +20,17 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Movement();
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            jump();
+        }
+    }
 
+    void Jump()
+    {
+        //TODO: Make jumping mechanic here, i'm far too lazy
+        rb.
     }
 
     void Movement()
@@ -52,6 +63,7 @@ public class Player : MonoBehaviour
             rend.flipX = false;
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
