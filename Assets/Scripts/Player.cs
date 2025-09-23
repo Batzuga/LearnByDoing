@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float movementSpeed;
+    [SerializeField] float jumpPower;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator anim;
@@ -23,14 +24,14 @@ public class Player : MonoBehaviour
         Movement();
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            jump();
+            Jump();
         }
     }
 
     void Jump()
     {
         //TODO: Make jumping mechanic here, i'm far too lazy
-        rb.
+        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
     }
 
     void Movement()
@@ -70,6 +71,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Goal"))
         {
             GameManager.instance.MissionComplete();
+            anim.SetBool("Moving", false);
             this.enabled = false;
         }
     }
