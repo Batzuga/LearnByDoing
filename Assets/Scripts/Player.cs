@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float movementSpeed;
+    [SerializeField] float jumpPower;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator anim;
