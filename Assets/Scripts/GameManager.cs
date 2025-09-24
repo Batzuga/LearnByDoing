@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] GameObject winScreen;
     [SerializeField] TextMeshPro scoreText;
-    int coinsCollected;
+    int bagsCollected;
 
     private void Awake()
     {
@@ -24,15 +24,15 @@ public class GameManager : MonoBehaviour
         }
     }
   
-    public void CollectCoin()
+    public void CollectBag()
     {
-        coinsCollected++;
-        scoreText.text = $"{coinsCollected}/3";
+        bagsCollected++;
+        scoreText.text = $"MoneyBag {bagsCollected}/1";
     }
 
     public bool MissionComplete(string currentAnimation)
     {
-        if (currentAnimation != "Cody_Jumping") return false;     
+        if (bagsCollected != 1) return false;     
         audioSource.Play();
         winScreen.SetActive(true);
         return true;

@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         grounded = CheckIfGrounded();
+        anim.SetBool("Grounded", grounded);
         Movement();
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -110,6 +111,10 @@ public class Player : MonoBehaviour
         {
             //we call collect from Coin script
             collision.gameObject.GetComponent<Coin>().Collect();
+        }
+        if(collision.gameObject.GetComponent<MoneyBag>())
+        {
+            collision.gameObject.GetComponent<MoneyBag>().Collect();
         }
     }
 }
