@@ -66,11 +66,16 @@ public class Player : MonoBehaviour
     }
 
 
+    //Happens every time we collide with a 2D collider that has marked as trigger.
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //we check if the gameobject we collide with has a Goal tag.
         if(collision.gameObject.CompareTag("Goal"))
         {
-            GameManager.instance.MissionComplete();
+            bool gameOver = GameManager.instance.MissionComplete();
+            if (!gameOver) return;
+
+            rb.linearVelocityX = 0;
             anim.SetBool("Moving", false);
             this.enabled = false;
         }
