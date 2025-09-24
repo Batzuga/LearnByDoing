@@ -181,9 +181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   jumpPower: 5
-  rb: {fileID: 0}
-  anim: {fileID: 0}
-  rend: {fileID: 0}
   groundChecks:
   - {fileID: 1315119744}
   - {fileID: 771904407}
@@ -1149,7 +1146,7 @@ GameObject:
   - component: {fileID: 705034428}
   - component: {fileID: 705034429}
   m_Layer: 0
-  m_Name: Square
+  m_Name: MoneyBag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
