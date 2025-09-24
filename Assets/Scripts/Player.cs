@@ -5,9 +5,9 @@ public class Player : MonoBehaviour
     [SerializeField] float movementSpeed;
     [SerializeField] float jumpPower;
 
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] Animator anim;
-    [SerializeField] SpriteRenderer rend;
+    Rigidbody2D rb;
+    Animator anim;
+    SpriteRenderer rend;
 
     [SerializeField] Transform[] groundChecks;
     [SerializeField] LayerMask groundLayer;
