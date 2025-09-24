@@ -79,9 +79,11 @@ public class Player : MonoBehaviour
             anim.SetBool("Moving", false);
             this.enabled = false;
         }
+        //we check if the game object we collide with has Coin scipt (component)
         if(collision.gameObject.GetComponent<Coin>())
         {
-            //TO DO: fix coin collect
+            //we call collect from Coin script
+            collision.gameObject.GetComponent<Coin>().Collect();
         }
     }
 }
