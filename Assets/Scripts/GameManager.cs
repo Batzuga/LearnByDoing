@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject winScreen;
     [SerializeField] TextMeshPro scoreText;
     int bagsCollected;
+
+    [SerializeField] Light2D lightSource;
 
     private void Awake()
     {
@@ -32,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public bool MissionComplete(string currentAnimation)
     {
-        if (bagsCollected != 1) return false;     
+        if (lightSource.intensity < 1f) return false;     
         audioSource.Play();
         winScreen.SetActive(true);
         return true;
