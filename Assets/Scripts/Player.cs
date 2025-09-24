@@ -79,5 +79,9 @@ public class Player : MonoBehaviour
             anim.SetBool("Moving", false);
             this.enabled = false;
         }
+        if(collision.gameObject.GetComponent<Coin>())
+        {
+            //TO DO: fix coin collect
+        }
     }
 }
