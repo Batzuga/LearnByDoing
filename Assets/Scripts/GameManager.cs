@@ -30,9 +30,9 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"{coinsCollected}/3";
     }
 
-    public bool MissionComplete()
+    public bool MissionComplete(string currentAnimation)
     {
-        if (coinsCollected < 3) return false;     
+        if (currentAnimation != "Cody_Jumping") return false;     
         audioSource.Play();
         winScreen.SetActive(true);
         return true;

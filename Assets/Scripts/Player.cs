@@ -9,7 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer rend;
 
+    [SerializeField] Transform[] groundChecks;
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] float groundCheckHeight;
+
     bool grounded;
+    string animationPlayingName;
 
     void Start()
     {
@@ -21,17 +26,37 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        grounded = CheckIfGrounded();
         Movement();
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
+        animationPlayingName = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
     }
 
+    bool CheckIfGrounded()
+    {
+        bool hits = false;
+        for(int i = 0; i < groundChecks.Length; i++)
+        {
+            Debug.DrawRay(groundChecks[i].position, -groundChecks[i].up * groundCheckHeight);
+            RaycastHit2D hit = Physics2D.Raycast(groundChecks[i].position, -groundChecks[i].up, groundCheckHeight, groundLayer);
+            if(hit)
+            {
+                hits = true;
+                continue;
+            }
+        }
+        return hits;
+    }
     void Jump()
     {
-        //TODO: Make jumping mechanic here, i'm far too lazy
-        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        if(grounded)
+        {
+            grounded = false;
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        }
     }
 
     void Movement()
@@ -44,7 +69,7 @@ public class Player : MonoBehaviour
         float currentSpeed = Mathf.Abs(rb.linearVelocityX);
 
         //checking if speed is more than a treshold of 0.1f
-        //and then setting the animator value "moving" so it can play the correct animation
+        //and then setting the animator value "moving" to true or false so that it can play the correct animation
         if(currentSpeed > 0.1f)
         {
             anim.SetBool("Moving", true);
@@ -72,11 +97,12 @@ public class Player : MonoBehaviour
         //we check if the gameobject we collide with has a Goal tag.
         if(collision.gameObject.CompareTag("Goal"))
         {
-            bool gameOver = GameManager.instance.MissionComplete();
+            bool gameOver = GameManager.instance.MissionComplete(animationPlayingName);
             if (!gameOver) return;
 
             rb.linearVelocityX = 0;
             anim.SetBool("Moving", false);
+            anim.SetBool("Grounded", true);
             this.enabled = false;
         }
         //we check if the game object we collide with has Coin scipt (component)
