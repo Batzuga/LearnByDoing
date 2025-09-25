@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject winScreen;
     [SerializeField] TextMeshPro scoreText;
     int bagsCollected;
-    [SerializeField] GameObject trophy;
+    [SerializeField] Door door;
+
     private void Awake()
     {
         if(instance == null)
@@ -33,8 +34,7 @@ public class GameManager : MonoBehaviour
 
     public bool MissionComplete(string currentAnimation)
     {
-        Rigidbody2D rb = trophy.GetComponent<Rigidbody2D>();
-        if (rb == null || rb.gravityScale <= 0 || !rb.simulated) return false; 
+        if (!door.isOpen && door.GetComponent<SpriteRenderer>().sprite != door.openTexture && door.GetComponent<BoxCollider2D>().enabled) return false;
         audioSource.Play();
         winScreen.SetActive(true);
         return true;

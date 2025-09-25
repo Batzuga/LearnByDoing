@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     bool grounded;
     string animationPlayingName;
 
+    GameObject interactionTarget;
+
     void Start()
     {
         //we get all the necessary components at the start of the game
@@ -26,7 +28,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //
         grounded = CheckIfGrounded();
         anim.SetBool("Grounded", grounded);
         Movement();
@@ -34,9 +35,17 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
         animationPlayingName = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
     }
 
+    void Interact()
+    {
+        //Why is this empty? Who made this!?
+    }
     bool CheckIfGrounded()
     {
         bool hits = false;
@@ -107,15 +116,25 @@ public class Player : MonoBehaviour
             anim.SetBool("Grounded", true);
             this.enabled = false;
         }
-        //we check if the game object we collide with has Coin scipt (component)
-        if(collision.gameObject.GetComponent<Coin>())
+        if(collision.gameObject.GetComponent<Door>())
         {
-            //we call collect from Coin script
-            collision.gameObject.GetComponent<Coin>().Collect();
+            interactionTarget = collision.gameObject;
+            if(collision.transform.childCount > 0)
+            {
+                collision.transform.GetChild(0).gameObject.SetActive(true);
+            }
         }
-        if(collision.gameObject.GetComponent<MoneyBag>())
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(interactionTarget != null && interactionTarget == collision.gameObject)
         {
-            collision.gameObject.GetComponent<MoneyBag>().Collect();
+            if (collision.transform.childCount > 0)
+            {
+                collision.transform.GetChild(0).gameObject.SetActive(false);
+            }
+            interactionTarget = null;
         }
     }
 }
