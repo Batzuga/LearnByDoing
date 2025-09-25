@@ -957,7 +957,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -1616,16 +1616,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<color=yellow>Mission 6</color>
+  m_text: '<color=yellow>Mission 7</color>
 
 
-    It''s so dark and scary.
-
-    has
-    the sun forsaken us?!
-
-
-    fix the lighting!
 
 
 '
@@ -2596,7 +2589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: lights on
+  m_text: ???
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ce68679413afb945aadbe8130b2f087, type: 2}
   m_sharedMaterial: {fileID: -8867157946254900818, guid: 6ce68679413afb945aadbe8130b2f087, type: 2}

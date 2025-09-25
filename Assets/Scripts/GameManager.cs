@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshPro scoreText;
     int bagsCollected;
 
-    [SerializeField] Light2D lightSource;
-
     private void Awake()
     {
         if(instance == null)
@@ -35,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     public bool MissionComplete(string currentAnimation)
     {
-        if (lightSource.intensity < 1f) return false;     
+        return false;     
         audioSource.Play();
         winScreen.SetActive(true);
         return true;
