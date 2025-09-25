@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        //
         grounded = CheckIfGrounded();
         anim.SetBool("Grounded", grounded);
         Movement();
