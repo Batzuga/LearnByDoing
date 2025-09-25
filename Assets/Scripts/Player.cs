@@ -116,6 +116,12 @@ public class Player : MonoBehaviour
             anim.SetBool("Grounded", true);
             this.enabled = false;
         }
+
+        if(collision.gameObject.GetComponent<Coin>())
+        {
+            collision.gameObject.GetComponent<Coin>().Collect();
+        }
+
         if(collision.gameObject.GetComponent<Door>())
         {
             interactionTarget = collision.gameObject;
