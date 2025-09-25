@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject winScreen;
     [SerializeField] TextMeshPro scoreText;
     int bagsCollected;
-
+    [SerializeField] GameObject trophy;
     private void Awake()
     {
         if(instance == null)
@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
 
     public bool MissionComplete(string currentAnimation)
     {
-        return false;     
+        Rigidbody2D rb = trophy.GetComponent<Rigidbody2D>();
+        if (rb == null || rb.gravityScale <= 0 || !rb.simulated) return false; 
         audioSource.Play();
         winScreen.SetActive(true);
         return true;

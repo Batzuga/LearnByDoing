@@ -1018,6 +1018,7 @@ GameObject:
   - component: {fileID: 669998487}
   - component: {fileID: 669998486}
   - component: {fileID: 669998488}
+  - component: {fileID: 669998489}
   m_Layer: 0
   m_Name: Trophy
   m_TagString: Goal
@@ -1089,7 +1090,7 @@ Transform:
   m_GameObject: {fileID: 669998485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.65, y: 0.48, z: 0}
+  m_LocalPosition: {x: -5.44, y: 3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1133,6 +1134,33 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.453125
+--- !u!50 &669998489
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669998485}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 2
 --- !u!1 &771904406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,6 +1647,16 @@ MonoBehaviour:
   m_text: '<color=yellow>Mission 7</color>
 
 
+    I must be in the presence of dark
+    magic.
+
+    By all that is holy that trophy is defying gravity!
+
+    If only
+    I could make it fall somehow...
+
+
+    <color=yellow>Make the trophy fall!
 
 
 '
@@ -1830,7 +1868,7 @@ MonoBehaviour:
   audioSource: {fileID: 1401524752}
   winScreen: {fileID: 300741216}
   scoreText: {fileID: 1892746900}
-  lightSource: {fileID: 619394801}
+  trophy: {fileID: 669998485}
 --- !u!4 &1401524754
 Transform:
   m_ObjectHideFlags: 0
@@ -2589,7 +2627,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ???
+  m_text: Falling
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ce68679413afb945aadbe8130b2f087, type: 2}
   m_sharedMaterial: {fileID: -8867157946254900818, guid: 6ce68679413afb945aadbe8130b2f087, type: 2}
