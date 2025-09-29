@@ -18,9 +18,12 @@ public class Player : MonoBehaviour
 
     GameObject interactionTarget;
 
+    bool catsAreCool = true;
+
     void Start()
     {
         //we get all the necessary components at the start of the game
+        catsAreCool = true;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
@@ -106,8 +109,14 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //we check if the gameobject we collide with has a Goal tag.
-        if(collision.gameObject.CompareTag("Goal"))
+        if(collision.gameObject.GetComponent<Trophy>())
         {
+            if(catsAreCool)
+            {
+                Debug.Log("Meow-ha-haa!");
+                return;
+            }
+            
             bool gameOver = GameManager.instance.MissionComplete(animationPlayingName);
             if (!gameOver) return;
 

@@ -43,24 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        TextMeshProUGUI[] scoreText = GameObject.FindObjectsByType<TextMeshProUGUI>(FindObjectsSortMode.None);
-        foreach(TextMeshProUGUI tmp in scoreText)
-        {
-            Debug.Log(tmp.name);
-            string t = tmp.text;
-            MatchCollection matches = Regex.Matches(t, @"\d+");
-
-            foreach(Match match in matches)
-            {
-                if (int.TryParse(match.Value, out var v))
-                {
-                    if (v == coinValue)
-                    {
-                        scorefound = true;
-                    }
-                }             
-            }       
-        }
+      
     }
     public void CollectBag()
     {
@@ -69,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     public bool MissionComplete(string currentAnimation)
     {
+        if (!Trophy.instance.EndGame()) return false;
         if(!scorefound) return false;
         audioSource.Play();
         winScreen.SetActive(true);
