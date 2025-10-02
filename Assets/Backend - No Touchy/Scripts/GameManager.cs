@@ -14,15 +14,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] GameObject winScreen;
     Player player;
-    [SerializeField] SpriteRenderer tmp;
+    [SerializeField] TextMeshProUGUI tmp;
     [SerializeField] GameObject bubble;
     [SerializeField] TextMeshPro bubbleTxt;
-    Sprite sprite;
-    Vector2 playerStartp;
-    bool textureFixd;
-    bool ppu;
-    bool filt;
-    bool size;
+    string gameName;
+    string parsed;
 
     private void Awake()
     {
@@ -39,27 +35,26 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         player = GameObject.FindFirstObjectByType<Player>();
-        playerStartp = player.transform.position;
-        sprite = tmp.GetComponent<SpriteRenderer>().sprite;
+        gameName = Application.productName;
+        parsed = gameName.ToLower();
+        parsed = parsed.Replace("'", "");
+        tmp.text = $"<size=50><color=yellow>Mission 3 - It's in the name</color></size>\r\n\r\nwelcome to <size=50><color=yellow>{gameName}</color></size> learning project!\r\nWait... Deja vu... Kinda...\r\n\r\nMission\r\n<color=yellow>Fix the project name</color>\r\n\r\n\r\n";
+
+
     }
 
 
     void Update()
     {
-        ppu = (sprite.pixelsPerUnit == 16);
-        filt = sprite.texture.filterMode == FilterMode.Point;
-        size = tmp.transform.localScale.x == 1 && tmp.transform.localScale.y == 1;
-        if(filt && ppu && size && !textureFixd)
+        if(parsed == "codys unity adventures")
         {
-            textureFixd = true;
-            bubble.SetActive(false);
             Trophy.instance.Toggle(true);
+            bubble.SetActive(false);
         }
-        else if (!filt || !ppu || !size)
+        else
         {
-            textureFixd = false;
-            bubble.SetActive(true);
             Trophy.instance.Toggle(false);
+            bubble.SetActive(true);
         }
     }
 
