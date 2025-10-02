@@ -68,14 +68,18 @@ public class Player : MonoBehaviour
         if(collision.gameObject.GetComponent<Trophy>())
         {
             if (!GameManager.instance.MissionComplete()) return;
-
-            //we reset player animation states and disable player script when we reach the goal.
-            rb.linearVelocityX = 0;
-            anim.SetBool("Win", true);
-            anim.SetBool("Moving", false);
-            anim.SetBool("Grounded", true);
-            this.enabled = false;
+            WinGame();
         }
+    }
+
+    void WinGame()
+    {
+        //we reset player animation states and disable player script when we reach the goal.
+        rb.linearVelocityX = 0;
+        anim.SetBool("Win", true);
+        anim.SetBool("Moving", false);
+        anim.SetBool("Grounded", true);
+        this.enabled = false;
     }
 
     /// <summary>
