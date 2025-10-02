@@ -14,10 +14,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] GameObject winScreen;
     Player player;
-    [SerializeField] Light2D tmp;
+    [SerializeField] SpriteRenderer tmp;
     [SerializeField] GameObject bubble;
     [SerializeField] TextMeshPro bubbleTxt;
+    Sprite sprite;
     Vector2 playerStartp;
+    bool textureFixd;
+    bool ppu;
+    bool filt;
+    bool size;
+
     private void Awake()
     {
         if(instance == null)
@@ -30,29 +36,30 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(this);
             }
-        }     
+        }
+        DontDestroyOnLoad(gameObject);
         player = GameObject.FindFirstObjectByType<Player>();
         playerStartp = player.transform.position;
+        sprite = tmp.GetComponent<SpriteRenderer>().sprite;
     }
 
 
-    private void Update()
+    void Update()
     {
-        if(tmp != null && tmp.intensity == 1f)
+        ppu = (sprite.pixelsPerUnit == 16);
+        filt = sprite.texture.filterMode == FilterMode.Point;
+        size = tmp.transform.localScale.x == 1 && tmp.transform.localScale.y == 1;
+        if(filt && ppu && size && !textureFixd)
         {
-            Trophy.instance.Toggle(true);
+            textureFixd = true;
             bubble.SetActive(false);
+            Trophy.instance.Toggle(true);
         }
-        else if(tmp.intensity < 1f)
+        else if (!filt || !ppu || !size)
         {
+            textureFixd = false;
+            bubble.SetActive(true);
             Trophy.instance.Toggle(false);
-            bubble.SetActive(true);
-            bubbleTxt.text = "I'm so scared! It's so dark!\r\nWhere did the sun go!? ";
-        }
-        else if(tmp.intensity > 1f)
-        {
-            bubble.SetActive(true);
-            bubbleTxt.text = "Aaaaaah! My eeeeyes! It's too bright. Aaaah!";
         }
     }
 
