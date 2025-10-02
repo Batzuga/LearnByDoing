@@ -14,8 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] GameObject winScreen;
     Player player;
-    [SerializeField] TextMeshPro tmp;
+    [SerializeField] Light2D tmp;
     [SerializeField] GameObject bubble;
+    [SerializeField] TextMeshPro bubbleTxt;
     Vector2 playerStartp;
     private void Awake()
     {
@@ -37,20 +38,21 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(bubble && player.transform.hasChanged && Vector2.Distance(playerStartp, player.transform.position) > 0.2f)
-        {
-            Destroy(bubble);
-        }
-        if(player != null && player.movementSpeed >= 1)
+        if(tmp != null && tmp.intensity == 1f)
         {
             Trophy.instance.Toggle(true);
-            tmp.text = "I'm now open since you finished your task. That's why I'm looking so radiant!";
-            
+            bubble.SetActive(false);
         }
-        else
+        else if(tmp.intensity < 1f)
         {
             Trophy.instance.Toggle(false);
-            tmp.text = "I'm the Goal. I'm currently closed. That's why I'm looking a little pale.";
+            bubble.SetActive(true);
+            bubbleTxt.text = "I'm so scared! It's so dark!\r\nWhere did the sun go!? ";
+        }
+        else if(tmp.intensity > 1f)
+        {
+            bubble.SetActive(true);
+            bubbleTxt.text = "Aaaaaah! My eeeeyes! It's too bright. Aaaah!";
         }
     }
 
