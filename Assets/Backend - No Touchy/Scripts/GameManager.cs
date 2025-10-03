@@ -17,9 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI tmp;
     [SerializeField] GameObject bubble;
     [SerializeField] TextMeshPro bubbleTxt;
-    string gameName;
-    string parsed;
-
+    Vector2 startP;
     private void Awake()
     {
         if(instance == null)
@@ -35,26 +33,19 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         player = GameObject.FindFirstObjectByType<Player>();
-        gameName = Application.productName;
-        parsed = gameName.ToLower();
-        parsed = parsed.Replace("'", "");
-        tmp.text = $"<size=50><color=yellow>Mission 3 - It's in the name</color></size>\r\n\r\nwelcome to <size=50><color=yellow>{gameName}</color></size> learning project!\r\nWait... Deja vu... Kinda...\r\n\r\nMission\r\n<color=yellow>Fix the project name</color>\r\n\r\n\r\n";
-
-
+        startP = player.transform.position;
     }
 
 
+    public void HideBubble()
+    {
+        bubble.SetActive(false);
+    }
     void Update()
     {
-        if(parsed == "codys unity adventures")
+        if (Vector2.Distance(player.transform.position, startP) > 0.2f)
         {
-            Trophy.instance.Toggle(true);
             bubble.SetActive(false);
-        }
-        else
-        {
-            Trophy.instance.Toggle(false);
-            bubble.SetActive(true);
         }
     }
 

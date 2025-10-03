@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 4e3c5b4d6b086e242a24c7d7c2aab0bc
+guid: 45fcbb52606db02488382b1e0fcd8816
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3525551296918080015
-    second: quizmaster_0
+      213: -7395502254881870386
+    second: quizmaster 1_0
   - first:
-      213: 3608272970278540558
-    second: quizmaster_1
+      213: -4083365700251394971
+    second: quizmaster 1_1
+  - first:
+      213: 5930271412578715391
+    second: quizmaster 1_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: quizmaster_0
+      name: quizmaster_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -116,16 +119,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1f5b7cd46c9b21fc0800000000000000
-      internalID: -3525551296918080015
+      spriteID: c870d58fcad223d4db372ca74b72b4d8
+      internalID: -1931853091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: quizmaster_1
+      name: quizmaster_idle_1
       rect:
         serializedVersion: 2
         x: 32
@@ -138,10 +141,32 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e0598162629231230800000000000000
-      internalID: 3608272970278540558
+      spriteID: 7b51d2a7a8ef9ad4080ad4c16842e156
+      internalID: -1243026961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quizmaster_idle_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e8396ea77e5fc4abef84ac58a3a6f8
+      internalID: 723644421
       vertices: []
       indices: 
       edges: []
@@ -150,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d9707cd7fd94a9e4c9bdd3a1a1f266d9
+    spriteID: 1ca9ce4618f62094984c67d9f86cb8e9
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      quizmaster_0: -3525551296918080015
-      quizmaster_1: 3608272970278540558
+      quizmaster_idle_0: -1931853091
+      quizmaster_idle_1: -1243026961
+      quizmaster_idle_2: 723644421
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

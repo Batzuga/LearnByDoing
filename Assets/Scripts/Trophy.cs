@@ -4,7 +4,7 @@ public class Trophy : MonoBehaviour
 {
     public static Trophy instance;
     Animator anim;
-    public bool opened;
+    [HideInInspector] public bool opened;
 
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class Trophy : MonoBehaviour
                 Destroy(this);
             }
         }
-
+        opened = false;
         anim = GetComponent<Animator>();
     }
 
