@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject bubble;
     [SerializeField] TextMeshPro bubbleTxt;
     Vector2 startP;
+    [SerializeField] LayerMask mask;
+    [SerializeField] GameObject tilemap;
+
     private void Awake()
     {
         if(instance == null)
@@ -43,6 +46,16 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(0, 1), Vector2.down, 10f, mask);
+        Debug.Log(hit.transform.gameObject.name);
+        if(hit.transform.gameObject == tilemap)
+        {
+            Trophy.instance.Toggle(true);
+        }
+        else
+        {
+            Trophy.instance.Toggle(false);
+        }
         if (Vector2.Distance(player.transform.position, startP) > 0.2f)
         {
             bubble.SetActive(false);
